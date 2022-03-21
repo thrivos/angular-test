@@ -1,7 +1,9 @@
 
-# Thrivos Angular Test Project
+# Thrivos Angular Test Project
 
-## Prerequisites
+This is a test project to evaluate Angular candidates.
+
+## Prerequisites
 
 You need to have Node.js installed and (ideally) Yarn. It can be done with NPM but Yarn is assumed.
 
