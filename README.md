@@ -1,105 +1,48 @@
 
+# Thrivos Angular Test Project
 
-# Foobar
+## Prerequisites
 
-This project was generated using [Nx](https://nx.dev).
+You need to have Node.js installed and (ideally) Yarn. It can be done with NPM but Yarn is assumed.
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Installation
 
-🔎 **Smart, Fast and Extensible Build System**
+Clone this repository and run inside the root folder.
 
-## Quick Start & Documentation
+```bash
+yarn
+```
 
-[Nx Documentation](https://nx.dev/angular)
+This will install all dependencies. Once it finishes you can run the projects.
 
-[10-minute video showing all Nx features](https://nx.dev/getting-started/intro)
+## Development
 
-[Interactive Tutorial](https://nx.dev/tutorial/01-create-application)
+The repo is composed of 2 projects, `users` (an Angular SPA app) and `users-api` (a NestJS API). In order to run both you will need to open 2 terminal sessions.
 
-## Adding capabilities to your workspace
+#### To run users-api
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+Run the following command to start the API server on `http://localhost:3333/api`.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+```bash
+yarn nx serve users-api
+```
 
-Below are our core plugins:
+#### To run the users project
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+Run the following command to start the application on `http://localhost:4200`
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+```
+yarn nx serve users
+```
 
-## Generate an application
+## Goals
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+The goal of the test is to create an autocomplete input that can search for users in the users-api and show them as a list as the app user types. For instance, when the user types the word `fr` the list should show results containing the string `fr` (case-insensitive).
 
-> You can use any of the plugins above to generate applications as well.
+To do this the autocomplete should call the endpoint `http://localhost:3333/api/users?name=fr` where the query param `name` contains the string the user typed in. The autocomplete should be designed as a standalone component.
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@foobar/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+Objectives of the test:
+1. Create an autocomplete that calls the users endpoint to search for users.
+2. The autocomplete should display the search results in a list below the input itself.
+3. The autocomplete should be handle delays in the response from the API, as well as optimizing the amount of calls made if the user continues to type.
+4. The list of resuts should support keyboard navigation up and down.

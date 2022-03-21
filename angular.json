@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "users": "apps/users",
+    "users-api": "apps/users-api",
     "users-e2e": "apps/users-e2e"
   }
 }
